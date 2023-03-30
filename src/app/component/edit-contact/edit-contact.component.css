@@ -1,0 +1,7 @@
+label {
+  color: rgb(195, 185, 185);
+}
+
+.ng-touched.ng-invalid {
+  border-color: red;
+}

@@ -1,0 +1,173 @@
+<!-- Static Data  -->
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <p class="h3">
+        NG Contacts
+        <a class="btn btn-outline-primary" routerLink="/contacts/add"
+          ><i class="bi bi-plus-lg"></i> Add</a
+        >
+      </p>
+      <p class="fst-italic lead">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, ipsa
+        nulla incidunt vel deserunt maxime earum dolore similique harum minus
+        voluptatibus enim maiores quia, consequatur dolorum quasi distinctio
+        aliquid? Excepturi.
+      </p>
+      <form>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    id="search"
+                    placeholder="Search User"
+                    class="form-control"
+                    [(ngModel)]="searchText"
+                    name="name"
+                  />
+                  <label for="search">Search User</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- loading spinner  -->
+<div class="d-flex justify-content-evenly" *ngIf="loading">
+  <div
+    class="spinner-border text-dark my-5"
+    role="status"
+    style="text-align: center; width: 3rem; height: 3rem"
+  >
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<!-- Cards -->
+<div class="container my-3" *ngIf="!loading">
+  <div class="row gy-3">
+    <ng-container *ngIf="!errorMsg">
+      <div
+        class="col-md-6"
+        *ngFor="let contact of allContacts | filter : searchText"
+      >
+        <div class="card bg-dark text-light shadow h-100">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-lg-3 mb-3 mb-lg-0 text-center">
+                <img
+                  [src]="contact.photo"
+                  [alt]="contact.name"
+                  class="img-fluid card-img-top"
+                />
+              </div>
+              <div class="col-lg-7">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    Name: <span class="fw-bold">{{ contact.name }}</span>
+                  </li>
+                  <li class="list-group-item">
+                    Email: <span class="fw-bold">{{ contact.email }}</span>
+                  </li>
+                  <li class="list-group-item">
+                    Mobile: <span class="fw-bold">{{ contact.mobile }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="col-lg-2 d-flex mt-3 mt-lg-0 justify-content-evenly d-lg-block"
+              >
+                <li
+                  class="btn btn-warning my-1"
+                  routerLink="/contacts/view/{{ contact.id }}"
+                >
+                  <i class="bi bi-eye-fill"></i>
+                </li>
+                <li
+                  class="btn btn-primary my-1"
+                  routerLink="/contacts/edit/{{ contact.id }}"
+                >
+                  <i class="bi bi-pencil-fill"></i>
+                </li>
+                <button
+                  class="btn btn-danger my-1"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                  (click)="deleteContactId = contact.id"
+                >
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Warning Message
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Are you sure that you want to delete this contact ?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              (click)="onDelete(deleteContactId)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ///////End of Modal//////// -->
+
+    <!-- error Msg -->
+    <div class="row my-5" *ngIf="errorMsg">
+      <div
+        class="col alert alert-danger text-center"
+        style="word-wrap: break-word"
+      >
+        {{ errorMsg }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="container mt-3">
+  <p class="h3 fw-bold">View Contact</p>
+  <p class="fwt-italic lead">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto ipsa
+    veritatis asperiores fugit saepe, ullam sequi quas earum dignissimos
+    placeat? Placeat voluptates numquam aliquam illum quisquam harum eum tempora
+    eveniet.
+  </p>
+</div>
+
+<!-- loading -->
+<div class="d-flex justify-content-evenly" *ngIf="loading">
+  <div
+    class="spinner-border text-dark my-5"
+    role="status"
+    style="text-align: center; width: 3rem; height: 3rem"
+  >
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<!-- errorMessage -->
+
+<div class="container" *ngIf="errorMsg && !loading">
+  <div class="alert alert-danger" style="word-wrap: break-word">
+    {{ errorMsg }}
+  </div>
+</div>
+
+<div class="container mt-5" *ngIf="contactData && !loading">
+  <div class="row">
+    <div class="col-sm-4 d-flex align-items-center justify-content-center">
+      <img
+        [src]="contactData.photo"
+        [alt]="contactData.name"
+        class="img-fluid img-thumbnail rounded-circle mb-4 mb-sm-0"
+      />
+    </div>
+    <div
+      class="col-sm-8 col-md-6 d-flex align-items-center justify-content-center"
+    >
+      <ul class="list-group w-100">
+        <li class="list-group-item list-group-item-action">
+          Name: <span>{{ contactData.name }}</span>
+        </li>
+        <li class="list-group-item list-group-item-action">
+          Email: <span>{{ contactData.email }}</span>
+        </li>
+        <li class="list-group-item list-group-item-action">
+          Mobile: <span>{{ contactData.mobile }}</span>
+        </li>
+        <li class="list-group-item list-group-item-action">
+          Company: <span>{{ contactData.company }}</span>
+        </li>
+        <li class="list-group-item list-group-item-action">
+          Title: <span>{{ contactData.title }}</span>
+        </li>
+        <li class="list-group-item list-group-item-action">
+          Group Name: <span>{{ theGroup?.name }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row my-4">
+    <div class="col text-center">
+      <a routerLink="/" class="btn btn-warning btn-lg">
+        <i class="bi bi-arrow-left-circle-fill"></i> Back
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+img {
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 768px) {
+  img {
+    max-height: 302.4px;
+  }
+}
