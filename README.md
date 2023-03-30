@@ -1,10 +1,17 @@
-# CrudProject
+# Contact Manager App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+This is an Angular Bootstrap project for a Contact Manager app that allows you to search, add, delete, view and edit contacts. It uses json-server to mock a REST API for storing the contact data, and a search pipe to filter the contacts based on the user's input. The app also features a responsive design using Bootstrap modals.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To run this app on your local machine, follow these steps:/
+
+1-Clone the repository: 'git clone https://github.com/your-username/contact-manager.git'/  
+2-Install the dependencies: 'npm install'/
+3-Start the json-server: 'npm start' (inside the server directory)/
+4-Start the app: 'ng serve'/
+The app should now be running on http://localhost:4200.
 
 ## Code scaffolding
 
